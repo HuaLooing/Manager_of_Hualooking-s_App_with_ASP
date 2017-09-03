@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
-using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+
+using MySql.Data.MySqlClient;
 
 public partial class main : System.Web.UI.Page
 {
@@ -16,17 +17,21 @@ public partial class main : System.Web.UI.Page
 
     public void logini()
     {
-        string str = ConfigurationManager.ConnectionStrings["userConnectionString"].ToString();
-        SqlConnection conn = new SqlConnection();
-        conn.Open();
-        string sql = "select * from student where ID = @userName and Password = @password";
-        SqlCommand comm = new SqlCommand(sql, conn);
+        string str = "server=250826a1.nat123.cc;port=48732;user id=root;password=970527j;database=demo";
+        MySqlConnection conn = new MySqlConnection(str);
+
+
+        string sql = "select * from administrator where Administrator_ID = @userName and Password = @passWord";
+        MySqlCommand comm = new MySqlCommand(sql, conn);
         comm.Parameters.Add("userName", TextBox1.Text);
-        comm.Parameters.Add("password", TextBox2.Text);
-        SqlDataReader sdr = comm.ExecuteReader();
+        comm.Parameters.Add("passWord", TextBox2.Text);
+
+        conn.Open();
+        comm.ExecuteNonQuery();
+        MySqlDataReader sdr = comm.ExecuteReader();
         if (sdr.Read())
         {
-            // lblMessage.Text = "登录成功";//调试语句，正式使用时删除
+            // lblMessage.Text = "登录成功";//调试语句，正式使用时删除 
             Session["userName"] = TextBox1.Text;
             Response.Write("<script>location.href='index.aspx';</script>");
 
@@ -34,7 +39,8 @@ public partial class main : System.Web.UI.Page
         }
         else
         {
-            Response.Write("<script>alert('用户名或密码错误');</script>");
+            Response.Write("<script>alart('用户名或密码错误')</script>");
+
             //Response.Redirect("login.aspx");  
         }
         conn.Close();

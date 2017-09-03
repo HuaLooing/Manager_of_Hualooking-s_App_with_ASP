@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="main.aspx.cs" Inherits="main" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="login.aspx.cs" Inherits="main" %>
 
 <!DOCTYPE html>
 
@@ -20,10 +20,13 @@
     <link href="css/light-bootstrap-dashboard.css" rel="stylesheet" />
 
     <!--     Fonts and icons     -->
-    <link href="css/font-awesome.min.css" rel="stylesheet/">
+    <link href="css/font-awesome.min.css" rel="stylesheet" />
     <link href='css/685fd913f1e14aebad0cc9d3713ee469.css' rel='stylesheet' type='text/css' />
     <link href="css/pe-icon-7-stroke.css" rel="stylesheet" />
 
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.9/sweetalert2.css" rel="stylesheet" type="text/css" />
+    
+    
 </head>
 
 
@@ -75,11 +78,11 @@
             <footer class="footer footer-transparent">
                 <div class="container">
                     <p class="copyright pull-right">
-                        © 2017 <a href="#">Weicheng97.cn </a>
+                        &copy; 2017 <a href="#">Weicheng97.cn </a>
                     </p>
                 </div>
             </footer>
-
+          
             <!--更换背景地址-->
             <div class="full-page-background" style="background-image: url(&quot;image/full-screen-image-1.jpg&quot;); display: block;"></div>
         </div>
@@ -94,4 +97,7 @@
 <script src="../js/jquery-ui.min.js" type="text/javascript"></script>
 <script src="../js/bootstrap.min.js" type="text/javascript"></script>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.9/sweetalert2.min.js" type="text/javascript"></script>
+
+    
 </html>
