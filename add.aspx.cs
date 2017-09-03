@@ -6,20 +6,24 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using MySql.Data.MySqlClient;
 
-public partial class Manager_of_Hualooking_s_App_with_ASP_add : System.Web.UI.Page
+public partial class add : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-       
+        if (Session["userName"] == null)
+        {
+            Response.Write("<script>alert('请登录');</script>");
+            Response.Redirect("login.aspx");
+        }
     }
 
     protected void Insert()
     {
-        string str = "server=250826a1.nat123.cc;port=48732;user id=root;password=970527j;database=demo";
+        string str = "server=219.230.148.132;port=3306;user id=root;password=970527j;database=demo";
         MySqlConnection conn = new MySqlConnection(str);
 
 
-        string sql = "INSERT INTO `demo`.`event` (`Name`, `Date`, `Grade1`, `Grade2`, `Grade3`, `Grade4`, `Number_linit`, `Hoster`, `Content`) VALUES (`@Name`, `@Date`, `@Grade1`, `@Grade2`, `@Grade3`, `@Grade4`, `@Number_linit`, `@Hoster`, `@Content`);";
+        string sql = "INSERT INTO demo.event (Name, Date, Grade1, Grade2, Grade3, Grade4, Number_linit, Hoster, Content, Kind) VALUES (@Name, @Date, @Grade1, @Grade2, @Grade3, @Grade4, @Number_Limit, @Hoster, @Content, @Kind);";
         MySqlCommand comm = new MySqlCommand(sql, conn);
         comm.Parameters.Add("Name", In_Name.Text);
         comm.Parameters.Add("Date", In_Date.Text);
@@ -31,20 +35,18 @@ public partial class Manager_of_Hualooking_s_App_with_ASP_add : System.Web.UI.Pa
         comm.Parameters.Add("Number_Limit", In_Limit.Text);
         comm.Parameters.Add("Hoster", In_Hoster.Text);
         comm.Parameters.Add("Content", In_Content.Text);
+        comm.Parameters.Add("Kind", In_Kind.Text);
 
         conn.Open();
-        comm.ExecuteNonQuery();
-        MySqlDataReader sdr = comm.ExecuteReader();
-        if (sdr.Read())
+        int n=(int)comm.ExecuteNonQuery();
+        if (n!=0)
         {
-            // lblMessage.Text = "登录成功";//调试语句，正式使用时删除 
-            Response.Write("<script>alart('创建活动成功');</script>");
-
-            //创建session
+            Response.Write("<script>alert('添加活动成功，3秒后跳转到管理页面');</script>");
+            Response.Write("<script language=\"javascript\">setTimeout(location.href='manage.aspx',3000)</script>");
         }
         else
         {
-            Response.Write("<script>alart('错误代码1')</script>");
+            Response.Write("<script>alert('错误代码1')</script>");
 
             //Response.Redirect("login.aspx");  
         }
@@ -53,23 +55,32 @@ public partial class Manager_of_Hualooking_s_App_with_ASP_add : System.Web.UI.Pa
 
     protected void Submit_Click(object sender, EventArgs e)
     {
-        Response.Write("<script>alart('什么鬼');</script>");
+        bool flag = true;
+
         if (In_Name.Text == "")
-            In_Name.CssClass = "form-control error";
-        else if (In_Date.Text == "")
-            In_Date.CssClass = "form-control error";
-        else if (In_Hour.Text == "" || Convert.ToInt32(In_Hour.Text) > 24 || Convert.ToInt32(In_Hour.Text) < 0)
-            In_Hour.CssClass = "form-control error";
-        else if (In_Minutes.Text == "" || Convert.ToInt32(In_Minutes.Text) > 59 || Convert.ToInt32(In_Minutes.Text) < 0)
-            In_Minutes.CssClass = "form-control error";
-        else if (In_Limit.Text == "")
-            In_Limit.Text = "999";
-        else if (In_Hoster.Text == "")
-            In_Hoster.CssClass = "form-control error";
-        else if (In_Content.Text == "")
-            In_Content.CssClass = "form-control error";
-        else
+        { In_Name.CssClass = "form-control error"; flag = false; }
+        if (In_Date.Text == "")
+        { In_Date.CssClass = "form-control error"; flag = false; }
+        if (In_Hour.Text == "" || Convert.ToInt32(In_Hour.Text) > 24 || Convert.ToInt32(In_Hour.Text) < 0)
+        { In_Hour.CssClass = "form-control error"; flag = false; }
+        if (In_Minutes.Text == "" || Convert.ToInt32(In_Minutes.Text) > 59 || Convert.ToInt32(In_Minutes.Text) < 0)
+        { In_Minutes.CssClass = "form-control error"; flag = false; }
+        if (In_Limit.Text == "")
+        { In_Limit.Text = "999"; }
+        if (In_Hoster.Text == "")
+        { In_Hoster.CssClass = "form-control error"; flag = false; }
+        if (In_Content.Text == "")
+        { In_Content.CssClass = "form-control error"; flag = false; }
+        if (In_Kind.Text == "")
+        { In_Kind.CssClass = "form-control error"; flag = false; }
+
+        if (flag==true)
+        {
             Insert();
-        
+        }
+        else
+            Response.Write("<script>alert('红色项未填写')</script>");
+
+
     }
 }

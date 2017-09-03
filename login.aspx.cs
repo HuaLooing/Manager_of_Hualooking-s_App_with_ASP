@@ -17,7 +17,7 @@ public partial class main : System.Web.UI.Page
 
     public void logini()
     {
-        string str = "server=250826a1.nat123.cc;port=48732;user id=root;password=970527j;database=demo";
+        string str = "server=219.230.148.132;port=3306;user id=root;password=970527j;database=demo";
         MySqlConnection conn = new MySqlConnection(str);
 
 

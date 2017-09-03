@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="add.aspx.cs" Inherits="Manager_of_Hualooking_s_App_with_ASP_add" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="add.aspx.cs" Inherits="add" %>
 
 <%-- 在此处添加内容控件 --%>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
@@ -42,7 +42,7 @@
                 <legend>添加活动</legend>
             </div>
             <div class="content">
-                <form method="get" action="/" class="form-horizontal" runat="server">
+                <form class="form-horizontal" runat="server">
 
                     <fieldset>
                         <div class="form-group">
