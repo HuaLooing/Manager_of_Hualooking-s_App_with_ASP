@@ -34,7 +34,7 @@ public partial class main : System.Web.UI.Page
         if (sdr.Read())
         {
             // lblMessage.Text = "登录成功";//调试语句，正式使用时删除 
-            Session["userName"] = TextBox1.Text;
+            Session["userName"] = sdr["Name"].ToString();
             Response.Write("<script>location.href='index.aspx';</script>");
             //创建session
         }

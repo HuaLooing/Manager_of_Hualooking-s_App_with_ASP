@@ -9,6 +9,7 @@ public partial class MasterPage : System.Web.UI.MasterPage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        Label1.Text=
+        if (Session["userName"] != null)
+            Label1.Text = Session["userName"].ToString();
     }
 }

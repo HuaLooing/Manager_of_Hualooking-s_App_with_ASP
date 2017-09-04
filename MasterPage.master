@@ -53,7 +53,7 @@
                     <div class="info">
                         <a data-toggle="collapse" href="#collapseExample" class="collapsed">
 
-                        <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>              
+                        <asp:Label ID="Label1" runat="server" Text="Label">姓名</asp:Label>              
                     </a>
                     </div>
                 </div>
@@ -143,12 +143,6 @@
     <!--  Notifications Plugin    -->
     <script src="../js/bootstrap-notify.js"></script>
 
-    <!-- Vector Map plugin -->
-	<script src="../js/jquery-jvectormap.js"></script>
-
-    <!--  Google Maps Plugin    -->
-    <script src="../js/aa743e8f448a4792bad10d201a7080f6.js"></script>
-
 	<!-- Wizard Plugin    -->
     <script src="../js/jquery.bootstrap.wizard.min.js"></script>
 
@@ -158,9 +152,6 @@
 	<!--  Plugin for DataTables.net  -->
 	<script src="../js/jquery.datatables.js"></script>
 
-    <!--  Full Calendar Plugin    -->
-    <script src="../js/fullcalendar.min.js"></script>
-
     <!-- Light Bootstrap Dashboard Core javascript and methods -->
 	<script src="../js/light-bootstrap-dashboard.js"></script>
 
@@ -168,6 +159,86 @@
     <script src="../js/jquery.sharrre.js"></script>
 
     <!--   日期选择器    -->
-<script src="js/datepicker/WdatePicker.js"></script>
+    <script src="js/datepicker/WdatePicker.js"></script>
+
+    <script type="text/javascript">
+        var $table = $('#Table_List');
+
+        function operateFormatter(value, row, index) {
+            return [
+                '<a rel="tooltip" title="View" class="btn btn-simple btn-info btn-icon table-action view" href="javascript:void(0)">',
+                '<i class="fa fa-image"></i>',
+                '</a>',
+                '<a rel="tooltip" title="Edit" class="btn btn-simple btn-warning btn-icon table-action edit" href="javascript:void(0)">',
+                '<i class="fa fa-edit"></i>',
+                '</a>',
+                '<a rel="tooltip" title="Remove" class="btn btn-simple btn-danger btn-icon table-action remove" href="javascript:void(0)">',
+                '<i class="fa fa-remove"></i>',
+                '</a>'
+            ].join('');
+        }
+
+        $().ready(function () {
+            window.operateEvents = {
+                'click .view': function (e, value, row, index) {
+                    info = JSON.stringify(row);
+
+                    alert('You click view icon, row: ', info);
+                    console.log(info);
+                },
+                'click .edit': function (e, value, row, index) {
+                    info = JSON.stringify(row);
+
+                    alert('You click edit icon, row: ', info);
+                    console.log(info);
+                },
+                'click .remove': function (e, value, row, index) {
+                    console.log(row);
+                    $table.bootstrapTable('remove', {
+                        field: 'id',
+                        values: [row.id]
+                    });
+                }
+            };
+
+            $table.bootstrapTable({
+                toolbar: ".toolbar",
+                clickToSelect: true,
+                showRefresh: true,
+                search: false,
+                showToggle: true,
+                showColumns: true,
+                pagination: true,
+                searchAlign: 'left',
+                pageSize: 8,
+                clickToSelect: false,
+                pageList: [8, 10, 25, 50, 100],
+
+                formatShowingRows: function (pageFrom, pageTo, totalRows) {
+                    //do nothing here, we don't want to show the text "showing x of y from..."
+                },
+                formatRecordsPerPage: function (pageNumber) {
+                    return "每页 "+ pageNumber + " 条";
+                },
+                icons: {
+                    refresh: 'fa fa-refresh',
+                    toggle: 'fa fa-th-list',
+                    columns: 'fa fa-columns',
+                    detailOpen: 'fa fa-plus-circle',
+                    detailClose: 'fa fa-minus-circle'
+                }
+            });
+
+            //activate the tooltips after the data table is initialized
+            $('[rel="tooltip"]').tooltip();
+
+            $(window).resize(function () {
+                $table.bootstrapTable('resetView');
+            });
+
+
+        });
+
+    </script>
 
 </html>

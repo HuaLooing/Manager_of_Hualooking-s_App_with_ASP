@@ -25,7 +25,7 @@ public partial class add : System.Web.UI.Page
         string str = ConfigurationManager.ConnectionStrings["constr"].ConnectionString; ;
         MySqlConnection conn = new MySqlConnection(str);
 
-        string sql = "INSERT INTO demo.event (Name, Date, Grade1, Grade2, Grade3, Grade4, Number_linit, Hoster, Content, Kind) VALUES (@Name, @Date, @Grade1, @Grade2, @Grade3, @Grade4, @Number_Limit, @Hoster, @Content, @Kind);";
+        string sql = "INSERT INTO demo.event (Name, Date, Grade1, Grade2, Grade3, Grade4, Number_limit, Hoster, Content, Kind) VALUES (@Name, @Date, @Grade1, @Grade2, @Grade3, @Grade4, @Number_Limit, @Hoster, @Content, @Kind);";
         MySqlCommand comm = new MySqlCommand(sql, conn);
         comm.Parameters.Add("Name", In_Name.Text);
         comm.Parameters.Add("Date", In_Date.Text);
@@ -64,7 +64,7 @@ public partial class add : System.Web.UI.Page
         if (In_Date.Text == "")
         { In_Date.CssClass = "form-control error"; flag = false; }
         if (In_Limit.Text == "")
-        { In_Limit.Text = "9999"; }
+        { In_Limit.Text = "999"; }
         if (In_Hoster.Text == "")
         { In_Hoster.CssClass = "form-control error"; flag = false; }
         if (In_Content.Text == "")

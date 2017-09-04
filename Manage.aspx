@@ -3,8 +3,9 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
     <title>管理活动</title>
-
+    
 </asp:Content>
+
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder2" runat="Server">
     <!--这里主要修改激活的项目-->
     <li>
@@ -33,6 +34,7 @@
         </a>
     </li>
 </asp:Content>
+
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <div class="row">
         <div class="col-md-12">
@@ -42,7 +44,7 @@
                     <p class="category">切换标签选择不同表格</p>
                 </div>
                 <div class="content">
-
+                    <div class="container-fluid">
                     <ul role="tablist" class="nav nav-tabs">
                         <li role="presentation" class="active">
                             <a href="#list" data-toggle="tab">列表</a>
@@ -57,19 +59,64 @@
 
                     <div class="tab-content">
                         <div id="list" class="tab-pane active">
-                            功能完善中01
-                            <asp:Table ID="Table1" runat="server"></asp:Table>
+                            <asp:Table ID="Table1" runat="server" CssClass="table table-hover table-striped">
+                                <asp:TableHeaderRow>
+                                    <asp:TableHeaderCell Width="5%">编号</asp:TableHeaderCell>
+                                    <asp:TableHeaderCell Width="10%">名称</asp:TableHeaderCell>
+                                    <asp:TableHeaderCell Width="25%">时间</asp:TableHeaderCell>
+                                    <asp:TableHeaderCell Width="15%">参与年级</asp:TableHeaderCell>
+                                    <asp:TableHeaderCell Width="20%">容量</asp:TableHeaderCell>
+                                    <asp:TableHeaderCell Width="10%">举办者</asp:TableHeaderCell>
+                                    <asp:TableHeaderCell Width="10%">活动类别</asp:TableHeaderCell>
+                                    <asp:TableHeaderCell Width="5%">编辑</asp:TableHeaderCell>
+                                </asp:TableHeaderRow>  
+                            </asp:Table>
+                           
+        
                         </div>
                         <div id="history" class="tab-pane">
-                            功能完善中02
+                            <asp:Table ID="Table2" runat="server" CssClass="table table-hover table-striped">
+                                <asp:TableHeaderRow>
+                                    <asp:TableHeaderCell Width="5%">编号</asp:TableHeaderCell>
+                                    <asp:TableHeaderCell Width="10%">名称</asp:TableHeaderCell>
+                                    <asp:TableHeaderCell Width="25%">时间</asp:TableHeaderCell>
+                                    <asp:TableHeaderCell Width="15%">参与年级</asp:TableHeaderCell>
+                                    <asp:TableHeaderCell Width="20%">容量</asp:TableHeaderCell>
+                                    <asp:TableHeaderCell Width="10%">举办者</asp:TableHeaderCell>
+                                    <asp:TableHeaderCell Width="10%">活动类别</asp:TableHeaderCell>
+                                    <asp:TableHeaderCell Width="5%">编辑</asp:TableHeaderCell>
+                                </asp:TableHeaderRow>                               
+                            </asp:Table>
                         </div>
+
                         <div id="exam" class="tab-pane">
-                            功能完善中03
-                        </div>
+                            功能完善中，尚未开放！
+                            <!--<asp:Table ID="Table3" runat="server" CssClass="table table-hover table-striped">
+                                <asp:TableHeaderRow>
+                                    <asp:TableHeaderCell Width="5%">ID</asp:TableHeaderCell>
+                                    <asp:TableHeaderCell Width="15%">名称</asp:TableHeaderCell>
+                                    <asp:TableHeaderCell Width="25%">时间</asp:TableHeaderCell>
+                                    <asp:TableHeaderCell Width="20%">状态</asp:TableHeaderCell>
+                                    <asp:TableHeaderCell Width="10%">举办者</asp:TableHeaderCell>
+                                    <asp:TableHeaderCell Width="5%">编辑</asp:TableHeaderCell>
+                                </asp:TableHeaderRow>
+                                <asp:TableRow>
+                                    <asp:TableCell>1</asp:TableCell>
+                                    <asp:TableCell>人文之光</asp:TableCell>
+                                    <asp:TableCell>YYYY:MM:DD HH:MM</asp:TableCell>
+                                    <asp:TableCell>报名中(50/52)</asp:TableCell>
+                                    <asp:TableCell>Weicheng</asp:TableCell>
+                                    <asp:TableCell CssClass="text-right">
+                                        <a href="#" class="btn btn-simple btn-warning btn-icon edit"><i class="fa fa-edit" onclick=""></i></a>
+                						<a href="#" class="btn btn-simple btn-danger btn-icon remove"><i class="fa fa-times"></i></a></asp:TableCell>
+                                    </asp:TableRow>
+                            </asp:Table>
+                          </div> -->
 
                     </div>
 
                 </div>
+                    </div>
             </div>
         </div>
     </div>

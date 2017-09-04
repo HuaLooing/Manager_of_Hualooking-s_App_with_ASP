@@ -60,7 +60,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label>密码</label>
-                                            <asp:TextBox ID="TextBox2" runat="server" class="form-control"></asp:TextBox>
+                                            <asp:TextBox ID="TextBox2" runat="server" class="form-control" TextMode="Password"></asp:TextBox>
                                         </div>
                                     </div>
                                     <div class="footer text-center">
