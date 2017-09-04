@@ -58,6 +58,7 @@
                     <div class="tab-content">
                         <div id="list" class="tab-pane active">
                             功能完善中01
+                            <asp:Table ID="Table1" runat="server"></asp:Table>
                         </div>
                         <div id="history" class="tab-pane">
                             功能完善中02

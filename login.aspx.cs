@@ -12,12 +12,14 @@ public partial class main : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        //已登录直接跳转
+        if(Session["userName"] != null)
+            Response.Write("<script>location.href='index.aspx';</script>"); ;
     }
 
     public void logini()
     {
-        string str = "server=219.230.148.132;port=3306;user id=root;password=970527j;database=demo";
+        string str = ConfigurationManager.ConnectionStrings["constr"].ConnectionString; ;
         MySqlConnection conn = new MySqlConnection(str);
 
 
@@ -34,7 +36,6 @@ public partial class main : System.Web.UI.Page
             // lblMessage.Text = "登录成功";//调试语句，正式使用时删除 
             Session["userName"] = TextBox1.Text;
             Response.Write("<script>location.href='index.aspx';</script>");
-
             //创建session
         }
         else
