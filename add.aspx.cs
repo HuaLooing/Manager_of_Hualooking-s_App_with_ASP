@@ -12,7 +12,6 @@ public partial class add : System.Web.UI.Page
     string hour, minutes;
     protected void Page_Load(object sender, EventArgs e)
     {
-        
         if (Session["userName"] == null)
         {
             Response.Write("<script>alert('请登录');</script>");

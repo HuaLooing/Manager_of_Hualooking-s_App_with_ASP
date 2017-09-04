@@ -1,4 +1,5 @@
-﻿<!doctype html>
+﻿<%@ Master Language="C#" AutoEventWireup="true"  CodeFile="MasterPage.master.cs" Inherits="MasterPage" %> 
+<!doctype html>
 <html lang="en">
 
 <head>
@@ -51,7 +52,8 @@
                     </div>
                     <div class="info">
                         <a data-toggle="collapse" href="#collapseExample" class="collapsed">
-                        姓名在这里                      
+
+                        <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>              
                     </a>
                     </div>
                 </div>
