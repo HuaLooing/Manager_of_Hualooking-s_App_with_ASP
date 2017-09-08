@@ -3,7 +3,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
     <title>管理活动</title>
-    
+
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder2" runat="Server">
@@ -28,10 +28,18 @@
         </a>
     </li>
     <li>
-        <a href="member.aspx">
+        <a data-toggle="collapse" href="#componentsExamples">
             <i class="pe-7s-users"></i>
-            <p>管理成员</p>
+            <p>
+                成员管理<b class="caret"></b>
+            </p>
         </a>
+        <div class="collapse" id="componentsExamples">
+            <ul class="nav">
+                <li><a href="member_add.aspx">管理员管理</a></li>
+                <li><a href="member.aspx">各班信息查询及管理</a></li>
+            </ul>
+        </div>
     </li>
 </asp:Content>
 
@@ -45,52 +53,52 @@
                 </div>
                 <div class="content">
                     <div class="container-fluid">
-                    <ul role="tablist" class="nav nav-tabs">
-                        <li role="presentation" class="active">
-                            <a href="#list" data-toggle="tab">列表</a>
-                        </li>
-                        <li>
-                            <a href="#history" data-toggle="tab">历史</a>
-                        </li>
-                        <li>
-                            <a href="#exam" data-toggle="tab">审核</a>
-                        </li>
-                    </ul>
+                        <ul role="tablist" class="nav nav-tabs">
+                            <li role="presentation" class="active">
+                                <a href="#list" data-toggle="tab">列表</a>
+                            </li>
+                            <li>
+                                <a href="#history" data-toggle="tab">历史</a>
+                            </li>
+                            <li>
+                                <a href="#exam" data-toggle="tab">审核</a>
+                            </li>
+                        </ul>
 
-                    <div class="tab-content">
-                        <div id="list" class="tab-pane active">
-                            <asp:Table ID="Table1" runat="server" CssClass="table table-hover table-striped">
-                                <asp:TableHeaderRow>
-                                    <asp:TableHeaderCell Width="5%">编号</asp:TableHeaderCell>
-                                    <asp:TableHeaderCell Width="10%">名称</asp:TableHeaderCell>
-                                    <asp:TableHeaderCell Width="25%">时间</asp:TableHeaderCell>
-                                    <asp:TableHeaderCell Width="15%">参与年级</asp:TableHeaderCell>
-                                    <asp:TableHeaderCell Width="20%">容量</asp:TableHeaderCell>
-                                    <asp:TableHeaderCell Width="10%">举办者</asp:TableHeaderCell>
-                                    <asp:TableHeaderCell Width="10%">活动类别</asp:TableHeaderCell>
-                                    <asp:TableHeaderCell Width="5%">编辑</asp:TableHeaderCell>
-                                </asp:TableHeaderRow>  
-                            </asp:Table>
-                           
-        
-                        </div>
-                        <div id="history" class="tab-pane">
-                            <asp:Table ID="Table2" runat="server" CssClass="table table-hover table-striped">
-                                <asp:TableHeaderRow>
-                                    <asp:TableHeaderCell Width="5%">编号</asp:TableHeaderCell>
-                                    <asp:TableHeaderCell Width="10%">名称</asp:TableHeaderCell>
-                                    <asp:TableHeaderCell Width="25%">时间</asp:TableHeaderCell>
-                                    <asp:TableHeaderCell Width="15%">参与年级</asp:TableHeaderCell>
-                                    <asp:TableHeaderCell Width="20%">容量</asp:TableHeaderCell>
-                                    <asp:TableHeaderCell Width="10%">举办者</asp:TableHeaderCell>
-                                    <asp:TableHeaderCell Width="10%">活动类别</asp:TableHeaderCell>
-                                    <asp:TableHeaderCell Width="5%">编辑</asp:TableHeaderCell>
-                                </asp:TableHeaderRow>                               
-                            </asp:Table>
-                        </div>
+                        <div class="tab-content">
+                            <div id="list" class="tab-pane active">
+                                <asp:Table ID="Table1" runat="server" CssClass="table table-hover table-striped">
+                                    <asp:TableHeaderRow>
+                                        <asp:TableHeaderCell Width="5%">编号</asp:TableHeaderCell>
+                                        <asp:TableHeaderCell Width="10%">名称</asp:TableHeaderCell>
+                                        <asp:TableHeaderCell Width="20%">时间</asp:TableHeaderCell>
+                                        <asp:TableHeaderCell Width="15%">参与年级</asp:TableHeaderCell>
+                                        <asp:TableHeaderCell Width="15%">容量</asp:TableHeaderCell>
+                                        <asp:TableHeaderCell Width="10%">举办者</asp:TableHeaderCell>
+                                        <asp:TableHeaderCell Width="10%">活动类别</asp:TableHeaderCell>
+                                        <asp:TableHeaderCell Width="15%">编辑</asp:TableHeaderCell>
+                                    </asp:TableHeaderRow>
+                                </asp:Table>
 
-                        <div id="exam" class="tab-pane">
-                            功能完善中，尚未开放！
+
+                            </div>
+                            <div id="history" class="tab-pane">
+                                <asp:Table ID="Table2" runat="server" CssClass="table table-hover table-striped">
+                                    <asp:TableHeaderRow>
+                                        <asp:TableHeaderCell Width="5%">编号</asp:TableHeaderCell>
+                                        <asp:TableHeaderCell Width="10%">名称</asp:TableHeaderCell>
+                                        <asp:TableHeaderCell Width="20%">时间</asp:TableHeaderCell>
+                                        <asp:TableHeaderCell Width="15%">参与年级</asp:TableHeaderCell>
+                                        <asp:TableHeaderCell Width="15%">容量</asp:TableHeaderCell>
+                                        <asp:TableHeaderCell Width="10%">举办者</asp:TableHeaderCell>
+                                        <asp:TableHeaderCell Width="10%">活动类别</asp:TableHeaderCell>
+                                        <asp:TableHeaderCell Width="15%">编辑</asp:TableHeaderCell>
+                                    </asp:TableHeaderRow>
+                                </asp:Table>
+                            </div>
+
+                            <div id="exam" class="tab-pane">
+                                功能完善中，尚未开放！
                             <!--<asp:Table ID="Table3" runat="server" CssClass="table table-hover table-striped">
                                 <asp:TableHeaderRow>
                                     <asp:TableHeaderCell Width="5%">ID</asp:TableHeaderCell>
@@ -113,12 +121,12 @@
                             </asp:Table>
                           </div> -->
 
-                    </div>
+                            </div>
 
-                </div>
+                        </div>
                     </div>
+                </div>
             </div>
         </div>
     </div>
-
 </asp:Content>

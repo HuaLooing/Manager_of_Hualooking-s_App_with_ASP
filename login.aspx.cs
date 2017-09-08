@@ -12,9 +12,7 @@ public partial class main : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        //已登录直接跳转
-        if(Session["userName"] != null)
-            Response.Write("<script>location.href='index.aspx';</script>"); ;
+        
     }
 
     public void logini()
@@ -35,6 +33,7 @@ public partial class main : System.Web.UI.Page
         {
             // lblMessage.Text = "登录成功";//调试语句，正式使用时删除 
             Session["userName"] = sdr["Name"].ToString();
+            Session["act"] = sdr["Act"].ToString();
             Response.Write("<script>location.href='index.aspx';</script>");
             //创建session
         }

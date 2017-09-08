@@ -25,10 +25,18 @@
         </a>
     </li>
     <li>
-        <a href="member.aspx">
+        <a data-toggle="collapse" href="#componentsExamples">
             <i class="pe-7s-users"></i>
-            <p>管理成员</p>
+            <p>
+                成员管理<b class="caret"></b>
+            </p>
         </a>
+        <div class="collapse" id="componentsExamples">
+            <ul class="nav">
+                <li><a href="member_add.aspx">管理员管理</a></li>
+                <li><a href="member.aspx">各班信息查询及管理</a></li>
+            </ul>
+        </div>
     </li>
 </asp:Content>
 

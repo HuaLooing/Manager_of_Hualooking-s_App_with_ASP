@@ -9,6 +9,6 @@ public partial class Manager_of_Hualooking_s_App_with_ASP_logout : System.Web.UI
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        this.Session.Remove("userName");
+        Session.Abandon();
     }
 }

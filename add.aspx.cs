@@ -29,7 +29,6 @@ public partial class add : System.Web.UI.Page
         MySqlCommand comm = new MySqlCommand(sql, conn);
         comm.Parameters.Add("Name", In_Name.Text);
         comm.Parameters.Add("Date", In_Date.Text);
-        comm.Parameters.Add("Time", hour + ":" + minutes);
         if (grade1.Checked) comm.Parameters.Add("Grade1", "1"); else comm.Parameters.Add("Grade1", "0");
         if (grade2.Checked) comm.Parameters.Add("Grade2", "1"); else comm.Parameters.Add("Grade2", "0");
         if (grade3.Checked) comm.Parameters.Add("Grade3", "1"); else comm.Parameters.Add("Grade3", "0");
@@ -57,8 +56,6 @@ public partial class add : System.Web.UI.Page
     protected void Submit_Click(object sender, EventArgs e)
     {
         bool flag = true;
-        hour = In_Hour.Items[In_Hour.SelectedIndex].Value;
-        minutes = In_Minutes.Items[In_Minutes.SelectedIndex].Value;
         if (In_Name.Text == "")
         { In_Name.CssClass = "form-control error"; flag = false; }
         if (In_Date.Text == "")

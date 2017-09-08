@@ -36,6 +36,8 @@
         <div class="container">
             <div class="navbar-header">
                 <a class="navbar-brand">常州大学华罗庚学院荣誉学分管理系统</a>
+                <br>
+                <a href="Table.html">表结构！！！！！</a>
             </div>      
         </div>
     </nav>
