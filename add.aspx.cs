@@ -25,7 +25,7 @@ public partial class add : System.Web.UI.Page
         string str = ConfigurationManager.ConnectionStrings["constr"].ConnectionString; ;
         MySqlConnection conn = new MySqlConnection(str);
 
-        string sql = "INSERT INTO demo.event (Name, Date, Grade1, Grade2, Grade3, Grade4, Number_limit, Hoster, Content, Kind) VALUES (@Name, @Date, @Grade1, @Grade2, @Grade3, @Grade4, @Number_Limit, @Hoster, @Content, @Kind);";
+        string sql = "INSERT INTO demo.event (Name, Date, Grade1, Grade2, Grade3, Grade4, Number_limit, Hoster, Content, Kind, Grade) VALUES (@Name, @Date, @Grade1, @Grade2, @Grade3, @Grade4, @Number_Limit, @Hoster, @Content, @Kind ,@Grade);";
         MySqlCommand comm = new MySqlCommand(sql, conn);
         comm.Parameters.Add("Name", In_Name.Text);
         comm.Parameters.Add("Date", In_Date.Text);
@@ -37,7 +37,7 @@ public partial class add : System.Web.UI.Page
         comm.Parameters.Add("Hoster", In_Hoster.Text);
         comm.Parameters.Add("Content", In_Content.Text);
         comm.Parameters.Add("Kind", In_Kind.Text);
-
+        comm.Parameters.Add("Grade", In_Grade.Text);
         conn.Open();
         int n=(int)comm.ExecuteNonQuery();
         if (n!=0)
@@ -68,7 +68,8 @@ public partial class add : System.Web.UI.Page
         { In_Content.CssClass = "form-control error"; flag = false; }
         if (In_Kind.Text == "")
         { In_Kind.CssClass = "form-control error"; flag = false; }
-
+        if (In_Grade.Text == "")
+        { In_Grade.CssClass = "form-control error"; flag = false; }
         if (flag==true)
             Insert();
         else

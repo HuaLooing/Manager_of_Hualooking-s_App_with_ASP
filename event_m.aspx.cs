@@ -76,7 +76,7 @@ public partial class event_m : System.Web.UI.Page
             if (In_Hoster.Text == "")            { In_Hoster.CssClass = "form-control error"; flag = false; }
             if (In_Content.Text == "")            { In_Content.CssClass = "form-control error"; flag = false; }
             if (In_Kind.Text == "")            { In_Kind.CssClass = "form-control error"; flag = false; }
-
+            if (In_Grade.Text == "") { In_Grade.CssClass = "form-control error"; flag = false; }
             if (flag == true)
                 Insert();
             else
@@ -89,7 +89,7 @@ public partial class event_m : System.Web.UI.Page
     {
         string str = ConfigurationManager.ConnectionStrings["constr"].ConnectionString; ;
         MySqlConnection conn = new MySqlConnection(str);
-        string sql = "select ID,Name,DATE_FORMAT(Date,'%y/%m/%d %h:%m') as Day,Hoster,Kind,Number_limit,Grade1,Grade2,Grade3,Grade4,Content,Kind from demo.event where id=@id";
+        string sql = "select ID,Name,DATE_FORMAT(Date,'%y/%m/%d %h:%m') as Day,Hoster,Kind,Number_limit,Grade1,Grade2,Grade3,Grade4,Content,Kind,Grade from demo.event where id=@id";
         MySqlCommand comm = new MySqlCommand(sql, conn);
         comm.Parameters.Add("id", strid);
         conn.Open();
@@ -107,6 +107,7 @@ public partial class event_m : System.Web.UI.Page
             if (sdr["Grade2"].ToString() == "1") { grade2.Checked = true; g2.CssClass = "checkbox checkbox-inline checked"; }
             if (sdr["Grade3"].ToString() == "1") { grade3.Checked = true; g3.CssClass = "checkbox checkbox-inline checked"; }
             if (sdr["Grade4"].ToString() == "1") { grade4.Checked = true; g4.CssClass = "checkbox checkbox-inline checked"; }
+            In_Grade.Text = sdr["Grade"].ToString();
         }
         conn.Close();
     }
@@ -141,7 +142,7 @@ public partial class event_m : System.Web.UI.Page
         string str = ConfigurationManager.ConnectionStrings["constr"].ConnectionString; ;
         MySqlConnection conn = new MySqlConnection(str);
 
-        string sql = "update demo.event set Name=@Name, Date=@Date, Grade1=@Grade1, Grade2=@Grade2, Grade3=@Grade3, Grade4=@Grade4, Number_limit=@Number_limit, Hoster=@Hoster, Content=@Content, Kind=@Kind where id=@id;";
+        string sql = "update demo.event set Name=@Name, Date=@Date, Grade1=@Grade1, Grade2=@Grade2, Grade3=@Grade3, Grade4=@Grade4, Number_limit=@Number_limit, Hoster=@Hoster, Content=@Content, Kind=@Kind, Grade=@Grade where id=@id;";
         MySqlCommand comm = new MySqlCommand(sql, conn);
         comm.Parameters.Add("id", Request["id"]);
         comm.Parameters.Add("Name", In_Name.Text);
@@ -153,7 +154,8 @@ public partial class event_m : System.Web.UI.Page
         comm.Parameters.Add("Number_Limit", In_Limit.Text);
         comm.Parameters.Add("Hoster", In_Hoster.Text);
         comm.Parameters.Add("Content", In_Content.Text);
-        comm.Parameters.Add("Kind", In_Kind.Text);      
+        comm.Parameters.Add("Kind", In_Kind.Text);
+        comm.Parameters.Add("Grade", In_Grade.Text);
         conn.Open();
         int n = (int)comm.ExecuteNonQuery();
         if (n != 0)

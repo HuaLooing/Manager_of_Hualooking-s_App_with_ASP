@@ -25,7 +25,7 @@ public partial class Manage : System.Web.UI.Page
             TableCell cell;
             string str = ConfigurationManager.ConnectionStrings["constr"].ConnectionString; ;
             MySqlConnection conn = new MySqlConnection(str);
-            string sql = "select ID,Name,DATE_FORMAT(Date,'%y年%m月%d日 %h:%m') as Day,Date,Hoster,Kind,Number_limit,Grade1,Grade2,Grade3,Grade4 from demo.event";
+            string sql = "select ID,Name,DATE_FORMAT(Date,'%y年%m月%d日 %h:%m') as Day,Date,Hoster,Kind,Number_limit,Grade1,Grade2,Grade3,Grade4,Grade from demo.event";
             MySqlCommand comm = new MySqlCommand(sql, conn);
             conn.Open();
             MySqlDataReader sdr = comm.ExecuteReader();
@@ -96,7 +96,7 @@ public partial class Manage : System.Web.UI.Page
                     row.Cells.Add(cell);
                     cell = new TableCell
                     {
-                        Text = sdr["Hoster"].ToString()
+                        Text = sdr["Grade"].ToString()
                     };
                     row.Cells.Add(cell);
                     cell = new TableCell
@@ -147,7 +147,7 @@ public partial class Manage : System.Web.UI.Page
                     row.Cells.Add(cell);
                     cell = new TableCell
                     {
-                        Text = sdr["Hoster"].ToString()
+                        Text = sdr["Grade"].ToString()
                     };
                     row.Cells.Add(cell);
                     cell = new TableCell
@@ -157,7 +157,7 @@ public partial class Manage : System.Web.UI.Page
                     row.Cells.Add(cell);
                     cell = new TableCell
                     {
-                        Text = "<a href =\"event_m.aspx?id=" + sdr["ID"].ToString() + "&action=delete\" rel=\"tooltip\" title=\"删除\" class=\"btn btn-simple btn-danger btn-icon remove\"><i class=\"fa fa-times\"></i></a></asp:TableCell>"
+                        Text = "<a href=\"event_list.aspx?id=" + sdr["ID"].ToString() + "\" rel=\"tooltip\" title=\"报名列表\"  target=\"_Blank\" class=\"btn btn-info btn-simple btn-xs\"><i class=\"fa fa-user\"></i><a href =\"event_m.aspx?id=" + sdr["ID"].ToString() + "&action=delete\" rel=\"tooltip\" title=\"删除\" class=\"btn btn-simple btn-danger btn-icon remove\"><i class=\"fa fa-times\"></i></a></asp:TableCell>"
                     };
                     row.Cells.Add(cell);
                 }

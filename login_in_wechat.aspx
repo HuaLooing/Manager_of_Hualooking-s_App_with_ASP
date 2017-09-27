@@ -1,9 +1,9 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="login.aspx.cs" Inherits="login" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="login_in_wechat.aspx.cs" Inherits="login_in_wechat" %>
+
 
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
-
 
 <head runat="server">
     <meta charset="utf-8" />
@@ -13,16 +13,21 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
 
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+
     <!-- Bootstrap core CSS     -->
     <link href="../css/bootstrap.min.css" rel="stylesheet" />
 
     <!--  Light Bootstrap Dashboard core CSS    -->
-    <link href="../css/light-bootstrap-dashboard.css" rel="stylesheet" />
+    <link href="css/light-bootstrap-dashboard.css" rel="stylesheet" />
 
     <!--     Fonts and icons     -->
-    <link href="../css/font-awesome.min.css" rel="stylesheet" />
-    <link href='../css/685fd913f1e14aebad0cc9d3713ee469.css' rel='stylesheet' type='text/css' />
-    <link href="../css/pe-icon-7-stroke.css" rel="stylesheet" />    
+    <link href="css/font-awesome.min.css" rel="stylesheet" />
+    <link href='css/685fd913f1e14aebad0cc9d3713ee469.css' rel='stylesheet' type='text/css' />
+    <link href="css/pe-icon-7-stroke.css" rel="stylesheet" />
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.9/sweetalert2.css" rel="stylesheet" type="text/css" />
+    
     
 </head>
 
@@ -32,13 +37,13 @@
     <nav class="navbar navbar-transparent navbar-absolute">
         <div class="container">
             <div class="navbar-header">
-                <a class="navbar-brand">常州大学华罗庚学院荣誉学分管理系统</a>
+                <a class="navbar-brand">华罗庚学院荣誉学分管理系统</a>
             </div>      
         </div>
     </nav>
 
     <div class="wrapper wrapper-full-page">
-        <div class="full-page login-page" data-color="black">
+        <div class="full-page login-page" data-color="red">
             <!--   使用 data-color="blue | azure | green | orange | red | purple" 更改主题颜色-->
 
             <div class="content">
@@ -49,7 +54,7 @@
 
 
                                 <div class="card">
-                                    <div class="header text-center">管理员登录</div>
+                                    <div class="header text-center">学号绑定</div>
                                     <div class="content">
                                         <div class="form-group">
                                             <label>账号</label>
@@ -70,18 +75,9 @@
                         </div>
                     </div>
                 </div>
-            </div>
-
-            <footer class="footer footer-transparent">
-                <div class="container">
-                    <p class="copyright pull-right">
-                        &copy; 2017 <a href="#">Weicheng97.cn </a>
-                    </p>
-                </div>
-            </footer>
-          
+            </div>          
             <!--更换背景地址-->
-            <div class="full-page-background" style="background-image: url(&quot;image/full-screen-image-1.jpg&quot;); display: block;"></div>
+            <!--div class="full-page-background" style="background-image: url(&quot;image/full-screen-image-1.jpg&quot;); display: block;"></div-->
         </div>
 
     </div>

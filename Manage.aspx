@@ -74,7 +74,7 @@
                                         <asp:TableHeaderCell Width="20%">时间</asp:TableHeaderCell>
                                         <asp:TableHeaderCell Width="15%">参与年级</asp:TableHeaderCell>
                                         <asp:TableHeaderCell Width="15%">容量</asp:TableHeaderCell>
-                                        <asp:TableHeaderCell Width="10%">举办者</asp:TableHeaderCell>
+                                        <asp:TableHeaderCell Width="10%">学分</asp:TableHeaderCell>
                                         <asp:TableHeaderCell Width="10%">活动类别</asp:TableHeaderCell>
                                         <asp:TableHeaderCell Width="15%">编辑</asp:TableHeaderCell>
                                     </asp:TableHeaderRow>
@@ -90,7 +90,7 @@
                                         <asp:TableHeaderCell Width="20%">时间</asp:TableHeaderCell>
                                         <asp:TableHeaderCell Width="15%">参与年级</asp:TableHeaderCell>
                                         <asp:TableHeaderCell Width="15%">容量</asp:TableHeaderCell>
-                                        <asp:TableHeaderCell Width="10%">举办者</asp:TableHeaderCell>
+                                        <asp:TableHeaderCell Width="10%">学分</asp:TableHeaderCell>
                                         <asp:TableHeaderCell Width="10%">活动类别</asp:TableHeaderCell>
                                         <asp:TableHeaderCell Width="15%">编辑</asp:TableHeaderCell>
                                     </asp:TableHeaderRow>

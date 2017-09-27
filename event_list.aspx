@@ -31,7 +31,6 @@
                 </div>
 
                 <fieldset>
-                    <asp:Label ID="Label1" runat="server" Text="调试label"></asp:Label>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">ID：</label><asp:Label ID="LID" runat="server" Text="Label"></asp:Label>
                     </div>

@@ -72,6 +72,15 @@
 
                     <fieldset>
                         <div class="form-group">
+                            <label class="col-sm-2 control-label">活动学分：</label>
+                            <div class="col-sm-5">
+                                <asp:TextBox ID="In_Grade" runat="server" type="text" class="form-control" onkeydown="if(event.keyCode==13)event.keyCode=9" onKeyPress="if ((event.keyCode<48 || event.keyCode>57)) event.returnValue=false"></asp:TextBox>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <fieldset>
+                        <div class="form-group">
                             <label class="col-sm-2 control-label">参与年级：</label>
                             <div class="col-sm-10">
                                 <label class="checkbox checkbox-inline">

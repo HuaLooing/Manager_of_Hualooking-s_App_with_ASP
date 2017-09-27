@@ -41,6 +41,14 @@
 
                         <fieldset>
                             <div class="form-group">
+                                <label class="col-sm-2 control-label">活动学分：</label>
+                                <div class="col-sm-5">
+                                    <asp:TextBox ID="In_Grade" runat="server" type="text" class="form-control" onkeydown="if(event.keyCode==13)event.keyCode=9" onKeyPress="if ((event.keyCode<48 || event.keyCode>57)) event.returnValue=false"></asp:TextBox>
+                                </div>
+                            </div>
+                        </fieldset>
+                        <fieldset>
+                            <div class="form-group">
                                 <label class="col-sm-2 control-label">活动日期：</label>
                                 <div class="col-sm-5">
                                     <asp:TextBox ID="In_Date" runat="server" type="text" class="form-control" OnClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm'})"></asp:TextBox>
@@ -62,7 +70,7 @@
 
                                     <asp:Label ID="g3" runat="server" Text="" class="checkbox checkbox-inline">
                                         <asp:CheckBox ID="grade3" runat="server" data-toggle="checkbox" />大二
-                                    </asp:Label>                          
+                                    </asp:Label>
                                     <asp:Label ID="g4" runat="server" Text="" class="checkbox checkbox-inline">
                                         <asp:CheckBox ID="grade4" runat="server" data-toggle="checkbox" />大四
                                     </asp:Label>
@@ -106,7 +114,7 @@
                             </div>
                         </fieldset>
                         <asp:Button ID="Submit" runat="server" class="btn btn-fill btn-info" Text="提交" OnClick="Submit_Click" />
-                        
+
                         <asp:Button ID="Cancel" runat="server" class="btn btn-fill btn-danger" Text="放弃" OnClick="Cancel_Click" />
                     </form>
                 </div>

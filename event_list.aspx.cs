@@ -167,7 +167,6 @@ public partial class event_list : System.Web.UI.Page
             sname = sdr["Name"].ToString();
             sclass = sdr["Class"].ToString();
         }
-        Label1.Text = sid + sname + sclass;
         conn.Close();
     }
 }
