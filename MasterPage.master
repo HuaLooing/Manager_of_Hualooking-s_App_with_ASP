@@ -140,9 +140,6 @@
 	<!--  Charts Plugin -->
 	<script src="../js/chartist.min.js"></script>
 
-    <!--  Notifications Plugin    -->
-    <script src="../js/bootstrap-notify.js"></script>
-
 	<!-- Wizard Plugin    -->
     <script src="../js/jquery.bootstrap.wizard.min.js"></script>
 
@@ -151,10 +148,8 @@
 
 	<!--  Plugin for DataTables.net  -->
 	<script src="../js/jquery.datatables.js"></script>
-
     <!-- Light Bootstrap Dashboard Core javascript and methods -->
 	<script src="../js/light-bootstrap-dashboard.js"></script>
-
 	<!--   Sharrre Library    -->
     <script src="../js/jquery.sharrre.js"></script>
 

@@ -1,45 +1,57 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
-using System.Collections.Generic;
 using System.Configuration;
 using System.IO;
-using System.Linq;
 using System.Net;
 using System.Text;
 using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
-
 
 public partial class event_in_wechat : System.Web.UI.Page
 {
+    //网页加载的一些判断
     protected void Page_Load(object sender, EventArgs e)
     {
+        //ClientScript.RegisterStartupScript(ClientScript.GetType(), "", "<script>swal({type:'success',text:'报名成功',showCancelButton:false,});</script>");
+        
         if (!Request.UserAgent.ToLower().Contains("micromessenger"))
         {
-            Response.Write("<script>location.href='fail.html';</script>");
+           Response.Write("<script>location.href='pages/fail.html';</script>");
         }
         else
         {
+            WriteTextLog("加载网页", DateTime.Now.ToLocalTime().ToString());
             //Response.Write("测试1。");
             //Label1.Text = Session["userName"].ToString();
             string st = Request["code"];
             //Response.Write(st);
-            if (get_openid(st) == false)
+            if (Session["stu_id"] == null)
             {
-                Response.Write("<script>location.href='fail.html';</script>");
+                if (get_openid(st) == false)
+                {
+                    Response.Write("<script>location.href='pages/fail3.html';</script>");
+                }
+                else
+                {
+                    check_openid();
+                }
             }
             else
             {
-                check_openid();
+
+                get_ybmlist();
+                get_kbmlist();
+                get_lscylist();
             }
+
         }
 
     }
-
     //获取用户openid
     protected bool get_openid(string code)
     {
+
+        Session["code"] = code;
         string url = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=wxd813cf0c8c5b4b8a&secret=b2edd1283451a2aa0fc4849caec86b82&code=" + code + "&grant_type=authorization_code ";
         HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
         request.Method = "POST";
@@ -62,13 +74,16 @@ public partial class event_in_wechat : System.Web.UI.Page
             int s1 = s.IndexOf("openid");
             int s2 = s.IndexOf("scope");
             //创建openid的session
+            WriteTextLog("登录code", code + " " + s.Substring(s1 + 9, s2 - s1 - 12));
             Session["openid"] = s.Substring(s1 + 9, s2 - s1 - 12);
             //调试语句
             // Response.Write(Session["open_id"].ToString());
+            //Session["s"] = s;
             return true;
         }
         else
         {
+            WriteTextLog("获取openid失败", "");
             return false;
         }
     }
@@ -82,20 +97,22 @@ public partial class event_in_wechat : System.Web.UI.Page
         MySqlCommand comm = new MySqlCommand(sql, conn);
         comm.Parameters.Add("opid", Session["openid"].ToString());
         conn.Open();
-        comm.ExecuteNonQuery();
         MySqlDataReader sdr = comm.ExecuteReader();
         if (sdr.Read())
         {
             //根据openid获取班级姓名后展示活动列表
             Session["stu_id"] = sdr["Student_ID"].ToString();
             Session["stu_class"] = sdr["Class"].ToString();
+            //Response.Write(Session["stu_id"].ToString() + Session["stu_class"].ToString());
+
             //加载表格
             get_ybmlist();
             get_kbmlist();
-            get_lscylist();
+            //get_lscylist();
         }
         else
         {
+            //Response.Write(Session["openid"].ToString()+"</br>"+ Session["s"].ToString());
             Response.Write("<script>location.href='login_in_wechat.aspx';</script>");
         }
         conn.Close();
@@ -107,7 +124,7 @@ public partial class event_in_wechat : System.Web.UI.Page
         TableCell cell;
         string str = ConfigurationManager.ConnectionStrings["constr"].ConnectionString; ;
         MySqlConnection conn = new MySqlConnection(str);
-        string sql = "select ID,Name,DATE_FORMAT(Date,'%y年%m月%d日 %h:%m') as Day,Date,Grade,Kind,Hoster from demo.event where Date > sysdate() and ID in (select ID from sign where Student_ID = @userName)";
+        string sql = "select ID,Name,DATE_FORMAT(Date,'%y年%m月%d日 %H:%m') as Day,Date,Grade,Kind,Hoster from demo.event where Date > sysdate() and ID in (select ID from sign where Student_ID = @userName)";
         MySqlCommand comm = new MySqlCommand(sql, conn);
         comm.Parameters.Add("userName", Session["stu_id"].ToString());
         conn.Open();
@@ -150,6 +167,7 @@ public partial class event_in_wechat : System.Web.UI.Page
             btn.CssClass = "btn btn-fill btn-info";
             btn.Text = "退选";
             btn.Click += new EventHandler(tuixuan);
+            cell.Controls.Add(btn);
             row.Cells.Add(cell);
             Table1.Rows.Add(row);
 
@@ -166,7 +184,7 @@ public partial class event_in_wechat : System.Web.UI.Page
         TableCell cell;
         string str = ConfigurationManager.ConnectionStrings["constr"].ConnectionString; ;
         MySqlConnection conn = new MySqlConnection(str);
-        string sql = "select ID,Name,DATE_FORMAT(Date,'%y年%m月%d日 %h:%m') as Day,Date,Grade1,Grade2,Grade3,Grade4,Grade,Kind,Hoster from demo.event where Date > sysdate() and ID not in (select ID from sign where Student_ID = @userName)";
+        string sql = "select ID,Name,DATE_FORMAT(Date,'%y年%m月%d日 %H:%m') as Day,Date,Grade1,Grade2,Grade3,Grade4,Grade,Kind,Hoster from demo.event where Date > sysdate() and ID not in (select ID from sign where Student_ID = @userName)";
         MySqlCommand comm = new MySqlCommand(sql, conn);
         comm.Parameters.Add("userName", Session["stu_id"].ToString());
         conn.Open();
@@ -211,13 +229,13 @@ public partial class event_in_wechat : System.Web.UI.Page
                 btn.CommandArgument = id;
                 btn.CssClass = "btn btn-fill btn-info";
                 btn.Text = "报名";
-                btn.Click += new EventHandler(tuixuan);
+                btn.Click += new EventHandler(baoming);
+                cell.Controls.Add(btn);
                 row.Cells.Add(cell);
                 Table1.Rows.Add(row);
             }
 
         }
-
         conn.Close();
     }
     //历史的活动列表 包括所有已经报名的活动 Table2：活动名称；活动时间；学分；状态
@@ -227,7 +245,7 @@ public partial class event_in_wechat : System.Web.UI.Page
         TableCell cell;
         string str = ConfigurationManager.ConnectionStrings["constr"].ConnectionString; ;
         MySqlConnection conn = new MySqlConnection(str);
-        string sql = "SELECT Student_ID,u.ID,Name,DATE_FORMAT(Date, '%y年%m月%d日 %h:%m') AS Day,Grade,k.ein,k.eout,k.Student_id FROM demo.event AS u INNER JOIN sign as k ON u.ID = k.ID and k.Student_ID=1";
+        string sql = "SELECT Student_ID,u.ID,Name,DATE_FORMAT(Date, '%y年%m月%d日 %H:%m') AS Day,Grade,k.ein,k.eout,k.Student_ID FROM demo.event AS u INNER JOIN sign as k ON u.ID = k.ID and k.Student_ID = @userName";
         MySqlCommand comm = new MySqlCommand(sql, conn);
         comm.Parameters.Add("userName", Session["stu_id"].ToString());
         conn.Open();
@@ -268,15 +286,13 @@ public partial class event_in_wechat : System.Web.UI.Page
             }
             row.Cells.Add(cell);
             Table2.Rows.Add(row);
-
         }
-
         conn.Close();
-
     }
     //报名按钮的操作
     protected void baoming(object sender, EventArgs e)
     {
+        
         string id = ((Button)sender).CommandArgument.ToString();
         string str = ConfigurationManager.ConnectionStrings["constr"].ConnectionString; ;
         MySqlConnection conn = new MySqlConnection(str);
@@ -285,11 +301,17 @@ public partial class event_in_wechat : System.Web.UI.Page
         comm.Parameters.Add("id", id);
         comm.Parameters.Add("userName", Session["stu_id"].ToString());
         conn.Open();
-        comm.ExecuteNonQuery();
-        MySqlDataReader sdr = comm.ExecuteReader();
-        if (sdr.Read())
+        if (comm.ExecuteNonQuery() != 0)
         {
-            Response.Write("<a href=\"javascript:;\" id=\"showToast\">");
+            WriteTextLog("报名成功", "id:" + id + " 学生id:" + Session["stu_id"].ToString());
+            //ClientScript.RegisterStartupScript(ClientScript.GetType(), "", "<script>swal({type:'success',text:'报名成功',showCancelButton:false,});</script>");
+            Response.Redirect(Request.Url.ToString());
+        }
+        else
+        {
+            ClientScript.RegisterStartupScript(ClientScript.GetType(), "", "<script>swal({type:'error',text:'报名失败',showCancelButton:false,});</script>");
+            WriteTextLog("报名失败", "id:" + id + " 学生id:" + Session["stu_id"].ToString());
+            //Response.Redirect(Request.Url.ToString());
         }
         conn.Close();
     }
@@ -304,12 +326,38 @@ public partial class event_in_wechat : System.Web.UI.Page
         comm.Parameters.Add("id", id);
         comm.Parameters.Add("userName", Session["stu_id"].ToString());
         conn.Open();
-        comm.ExecuteNonQuery();
-        MySqlDataReader sdr = comm.ExecuteReader();
-        if (sdr.Read())
+        if (comm.ExecuteNonQuery() != 0)
         {
-            Response.Write("<a href=\"javascript:;\" id=\"showToast\">");
+           
+            //Response.Write("<script>swal( type: 'sucess',text: '退选成功',timer: 2000)</script>");
+            WriteTextLog("退选成功", "id:" + id + " 学生id:" + Session["stu_id"].ToString());
+            Response.Redirect(Request.Url.ToString());
+            //ClientScript.RegisterStartupScript(ClientScript.GetType(), "", "<script>swal({type:'success',text:'退选成功',showCancelButton:false,});</script>");
+            // ClientScript.RegisterStartupScript(ClientScript.GetType(), "myscript", "<script>noti.showSucess('top','center')</script>");
+        }
+        else
+        {
+            ClientScript.RegisterStartupScript(ClientScript.GetType(), "", "<script>swal({type:'error',text:'退选失败',showCancelButton:false,});</script>");
+            WriteTextLog("退选失败", "id:" + id + " 学生id:" + Session["stu_id"].ToString());
+            Response.Redirect(Request.Url.ToString());
         }
         conn.Close();
+
+    }
+    //记录日志
+    protected static void WriteTextLog(string action, string strMessage)
+    {
+        
+        string str = ConfigurationManager.ConnectionStrings["constr"].ConnectionString; ;
+        MySqlConnection conn = new MySqlConnection(str);
+        string sql = "insert into log (logaction,logcont,ip) values(@l1,@l2,@l3)";
+        MySqlCommand comm = new MySqlCommand(sql, conn);
+        comm.Parameters.Add("l1", action);
+        comm.Parameters.Add("l2", strMessage);
+        comm.Parameters.Add("l3", HttpContext.Current.Request.ServerVariables["REMOTE_ADDR"]);
+        conn.Open();
+        comm.ExecuteNonQuery();
+        conn.Close();
+        
     }
 }

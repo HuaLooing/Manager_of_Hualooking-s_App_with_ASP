@@ -25,7 +25,7 @@ public partial class Manage : System.Web.UI.Page
             TableCell cell;
             string str = ConfigurationManager.ConnectionStrings["constr"].ConnectionString; ;
             MySqlConnection conn = new MySqlConnection(str);
-            string sql = "select ID,Name,DATE_FORMAT(Date,'%y年%m月%d日 %h:%m') as Day,Date,Hoster,Kind,Number_limit,Grade1,Grade2,Grade3,Grade4,Grade from demo.event";
+            string sql = "select ID,Name,DATE_FORMAT(Date,'%y年%m月%d日 %H:%m') as Day,Date,Hoster,Kind,Number_limit,Grade1,Grade2,Grade3,Grade4,Grade from demo.event";
             MySqlCommand comm = new MySqlCommand(sql, conn);
             conn.Open();
             MySqlDataReader sdr = comm.ExecuteReader();
