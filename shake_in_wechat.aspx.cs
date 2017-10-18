@@ -11,8 +11,8 @@ public partial class shake_in_wechat : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         
-        div1.Style["Display"] = "block";//block为显示
-        div2.Style["Display"] = "None";
+        div1.Style["Display"] = "None";//block为显示
+        div2.Style["Display"] = "Block";
         
         if (!Request.UserAgent.ToLower().Contains("micromessenger"))
         {
@@ -20,18 +20,10 @@ public partial class shake_in_wechat : System.Web.UI.Page
         }
         else
         {
-            get_openid();
-            if (Session["Shake_openid"] == null || Session["Shake_openid"] == "")
-            {
-                Response.Write("<script>location.href='pages/fail4.html';</script>");
-            }
-            else
-            {
-                check_event();
-            }
-
+            //WriteTextLog("加载摇一摇", Request["ticket"]);
+            get_openid();          
         }
-
+        
     }
     //从网页ticket获取openid
     protected void get_openid()
@@ -44,7 +36,7 @@ public partial class shake_in_wechat : System.Web.UI.Page
         HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
         request.Method = "POST";
         request.ContentType = "application/x-www-form-urlencoded";
-        request.ReadWriteTimeout = 3 * 1000;
+        request.ReadWriteTimeout = 10 * 1000;
         //构建post的json
         String postStr = "{\"ticket\":\"" + ticket + "\",\"need_poi\":1}";
         byte[] data = Encoding.UTF8.GetBytes(postStr);
@@ -57,17 +49,27 @@ public partial class shake_in_wechat : System.Web.UI.Page
         StreamReader myStreamReader = new StreamReader(response.GetResponseStream(), Encoding.UTF8);
         string s = myStreamReader.ReadToEnd();
         int s1 = s.IndexOf("openid");
-        int s2 = s.IndexOf("poi_id");
-        Session["Shake_openid"] = s.Substring(s1 + 9, s2 - s1 - 12);
-
-        WriteTextLog("加载摇一摇", s.Substring(s1 + 9, s2 - s1 - 12));
+        int s2 = s.IndexOf("page_id");
+        if(s1!=-1&&s2!=-1)
+        {
+            Session["Shake_openid"] = s.Substring(s1 + 9, s2 - s1 - 12);
+            //WriteTextLog("加载摇一摇", s);
+            check_event();
+        }
+        else
+        {
+            WriteTextLog("摇一摇失败", s);
+            Session["Shake_openid"] = "-1";
+            Response.Write("<script>location.href='pages/fail3.html';</script>");
+        }
+        
     }
 
     protected void check_event()
     {
         string str = ConfigurationManager.ConnectionStrings["constr"].ConnectionString; ;
         MySqlConnection conn = new MySqlConnection(str);
-        string sql = "SELECT ID,Name,Date,DATE_FORMAT(Date,%H:%m) as Time from event as u where u.Date-now()<=1500 and u.Date-now()>=0 and u.id in (select id from sign as v where id=u.id and v.Student_ID=(select Student_ID from student as h where h.openid=@openid))";
+        string sql = "SELECT ID,Name,Date,DATE_FORMAT(Date,'%H:%m') as Time from event as u where u.Date-now()<=1500 and u.Date-now()>=0 and u.id in (select id from sign as v where id=u.id and v.Student_ID=(select Student_ID from student as h where h.openid=@openid))";
         MySqlCommand comm = new MySqlCommand(sql, conn);
         comm.Parameters.Add("@openid", Session["Shake_openid"].ToString());
         conn.Open();
@@ -75,11 +77,13 @@ public partial class shake_in_wechat : System.Web.UI.Page
         if (sdr.Read())
         {
             div1.Style["Display"] = "Block";
+            div2.Style["Display"] = "None";
             Label1.Text = sdr["Name"].ToString();
             Label2.Text = sdr["Time"].ToString();
         }
         else
         {
+            div1.Style["Display"] = "None";
             div2.Style["Display"] = "Block";
         }
     }
@@ -88,12 +92,11 @@ public partial class shake_in_wechat : System.Web.UI.Page
     {
         string str = ConfigurationManager.ConnectionStrings["constr"].ConnectionString; ;
         MySqlConnection conn = new MySqlConnection(str);
-        string sql = "insert into log (logaction,logcont,ip,time) values(@l1,@l2,@l3,@l4)";
+        string sql = "insert into log (logaction,logcont,ip) values(@l1,@l2,@l3)";
         MySqlCommand comm = new MySqlCommand(sql, conn);
         comm.Parameters.Add("l1", action);
         comm.Parameters.Add("l2", strMessage);
         comm.Parameters.Add("l3", HttpContext.Current.Request.ServerVariables["REMOTE_ADDR"]);
-        comm.Parameters.Add("l4", DateTime.Now.ToLocalTime().ToString());
         conn.Open();
         comm.ExecuteNonQuery();
         conn.Close();

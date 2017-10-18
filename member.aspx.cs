@@ -21,14 +21,9 @@ public partial class member : System.Web.UI.Page
     protected void Submit_Click(object sender, EventArgs e)
     {
         string clas = In_Class.Text;
-        if (clas == "171" || clas == "172" || clas == "173" || clas == "161" || clas == "162" || clas == "152" || clas == "151" || clas == "142" || clas == "141" || clas == "132" || clas == "131")
-        {
-            Tab(clas);
-        }
-        else
-        {
-            Response.Write("<alart>班级</alart>");
-        }
+       
+        Tab(clas);
+       
             
     }
 

@@ -44,10 +44,13 @@
     <div class="col-md-12">
         <div class="card ">
             <div class="header">
-                <h4 class="title">活动状态</h4>
-                <p class="category">所有活动概览</p>
+                <h4 class="title">状态</h4>
+                <p class="category"></p>
+                
             </div>
             <div class="content">
+                <asp:Label ID="Label1" runat="server" Text=""></asp:Label>
+                 <asp:Label ID="Label2" runat="server" Text=""></asp:Label>
             </div>
         </div>
     </div>

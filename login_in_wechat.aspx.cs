@@ -67,7 +67,6 @@ public partial class login_in_wechat : System.Web.UI.Page
         {
             
             WriteTextLog("登录检查错误", "学生id:" + Session["stu_id"].ToString() + "openid:" + Session["openid"].ToString());
-
             //Label1.Text = "用户名或密码错误";
             //Response.Write("<script>alart('用户名或密码错误')</script>");
             //Response.Redirect("login.aspx");  

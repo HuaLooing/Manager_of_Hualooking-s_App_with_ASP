@@ -126,8 +126,8 @@ public partial class event_m : System.Web.UI.Page
         if (n != 0)
         {
             Session["delete"] = true;
-            Response.Write("<script>alert('删除成功，3秒后自动关闭页面');</script>");
-            this.ClientScript.RegisterClientScriptBlock(this.GetType(), "Close", "window.close()", true);
+            Response.Write("<script>location.href='manage.aspx';</script>");
+            
         }
         else
         {

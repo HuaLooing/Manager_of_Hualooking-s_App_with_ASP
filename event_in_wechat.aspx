@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="event_in_wechat.aspx.cs" Inherits="event_in_wechat" Debug="true" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="event_in_wechat.aspx.cs" Inherits="event_in_wechat" %>
 
 <!doctype html>
 <html lang="en">
@@ -25,27 +25,10 @@
     <link rel="stylesheet" href="../css/example.css" />
     <link href="../Libraries/sweetalert/css/sweetalert2.css" rel="stylesheet" />
 
-    <!--核心js-->
-    <script src="../js/jquery.min.js" type="text/javascript"></script>
-    <script src="../js/jquery-ui.min.js" type="text/javascript"></script>
-	<script src="../js/bootstrap.min.js" type="text/javascript"></script>
-
-    <script src="../js/light-bootstrap-dashboard.js"></script>
-    <!--  Forms Validations Plugin -->
-    <script src="../js/jquery.validate.min.js"></script>
-    <!--  Checkbox, Radio, Switch and Tags Input Plugins -->
-    <script src="../js/bootstrap-checkbox-radio-switch-tags.js"></script>
-    <!-- Wizard Plugin    -->
-    <script src="../js/jquery.bootstrap.wizard.min.js"></script>
-    <!--  Bootstrap Table Plugin    -->
-    <script src="../js/bootstrap-table.js"></script>
-    <script src="../Libraries/sweetalert/js/sweetalert2.js"></script>
-
-    <script src="../js/demo.js"></script>
 </head>
 
 <body>
-
+    <form runat="server">
     <div class="wrapper">
         <div class="sidebar" data-color="red" data-image="../image/full-screen-image-1.jpg">
             <!--
@@ -122,7 +105,7 @@
                         <div class="col-md-12">
                             <div class="card">
                                 <div class="header">
-                                    <h4 class="title">管理活动</h4>
+                                    <h4 class="title">管理活动 <asp:Label ID="Label2" runat="server" Text=""></asp:Label></h4>
                                     <p class="category">切换标签选择不同表格</p>
                                 </div>
                                 <div class="content">
@@ -175,9 +158,26 @@
 
 
     <!--end toast-->
-
+</form>
 </body>
 
 
+    <!--核心js-->
+    <script src="../js/jquery.min.js" type="text/javascript"></script>
+    <script src="../js/jquery-ui.min.js" type="text/javascript"></script>
+	<script src="../js/bootstrap.min.js" type="text/javascript"></script>
+
+    <script src="../js/light-bootstrap-dashboard.js"></script>
+    <!--  Forms Validations Plugin -->
+    <script src="../js/jquery.validate.min.js"></script>
+    <!--  Checkbox, Radio, Switch and Tags Input Plugins -->
+    <script src="../js/bootstrap-checkbox-radio-switch-tags.js"></script>
+    <!-- Wizard Plugin    -->
+    <script src="../js/jquery.bootstrap.wizard.min.js"></script>
+    <!--  Bootstrap Table Plugin    -->
+    <script src="../js/bootstrap-table.js"></script>
+    <script src="../Libraries/sweetalert/js/sweetalert2.js"></script>
+
+    <script src="../js/demo.js"></script>
 
 </html>

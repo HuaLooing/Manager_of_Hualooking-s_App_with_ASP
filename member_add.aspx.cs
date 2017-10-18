@@ -79,8 +79,13 @@ public partial class member_add : System.Web.UI.Page
                 {
                     cell = new TableCell
                     {
-                        Text = "<a href=\"#\" class=\"btn btn-simple btn-warning btn-icon edit\"><i class=\"fa fa-edit\" onclick=\"\"></i></a><a href =\"#\" class=\"btn btn-simple btn-danger btn-icon remove\"><i class=\"fa fa-times\"></i></a></asp:TableCell>"
+                        Text = "<a href=\"#\" class=\"btn btn-simple btn-danger btn-icon remove\"><i class=\"fa fa-times\">不可编辑</i></a>"
                     };
+                    /*
+                    cell = new TableCell
+                    {
+                        Text = "<a href=\"#\" class=\"btn btn-simple btn-warning btn-icon edit\"><i class=\"fa fa-edit\" onclick=\"\"></i></a><a href =\"#\" class=\"btn btn-simple btn-danger btn-icon remove\"><i class=\"fa fa-times\"></i></a></asp:TableCell>"
+                    };*/
                 }
                 
                 row.Cells.Add(cell);

@@ -11,8 +11,7 @@ public partial class login : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        if(Session["userName"]!=null)
-            Response.Write("<script>location.href='index.aspx';</script>");
+        
     }
 
     public void logini()
@@ -31,8 +30,9 @@ public partial class login : System.Web.UI.Page
         {
             // lblMessage.Text = "登录成功";//调试语句，正式使用时删除 
             Session["userName"] = TextBox1.Text;
+            Session["act"] = sdr["act"].ToString();
             Response.Write("<script>location.href='index.aspx';</script>");
-
+            WriteTextLog("管理员登录", TextBox1.Text);
             //创建session
         }
         else
@@ -48,5 +48,19 @@ public partial class login : System.Web.UI.Page
     {
         //queryUserInfo();  
         logini();
+    }
+
+    protected static void WriteTextLog(string action, string strMessage)
+    {
+        string str = ConfigurationManager.ConnectionStrings["constr"].ConnectionString; ;
+        MySqlConnection conn = new MySqlConnection(str);
+        string sql = "insert into log (logaction,logcont,ip) values(@l1,@l2,@l3)";
+        MySqlCommand comm = new MySqlCommand(sql, conn);
+        comm.Parameters.Add("l1", action);
+        comm.Parameters.Add("l2", strMessage);
+        comm.Parameters.Add("l3", HttpContext.Current.Request.ServerVariables["REMOTE_ADDR"]);
+        conn.Open();
+        comm.ExecuteNonQuery();
+        conn.Close();
     }
 }

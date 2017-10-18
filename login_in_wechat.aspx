@@ -8,7 +8,7 @@
 <head runat="server">
     <meta charset="utf-8" />
     <title>登录</title>
-    <link rel="icon" type="image/png" href="../assets/img/favicon.ico"/>
+    <link rel="icon" type="image/png" href="../assets/img/favicon.ico" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <!-- Bootstrap core CSS     -->
@@ -18,33 +18,16 @@
     <link href="../css/light-bootstrap-dashboard.css" rel="stylesheet" />
 
     <!--     Fonts and icons     -->
-    <link href="../css/font-awesome.min.css" rel="stylesheet"/>
-    <link href="../css/685fd913f1e14aebad0cc9d3713ee469.css" rel="stylesheet"/>
+    <link href="../css/font-awesome.min.css" rel="stylesheet" />
+    <link href="../css/685fd913f1e14aebad0cc9d3713ee469.css" rel="stylesheet" />
     <link href="../css/pe-icon-7-stroke.css" rel="stylesheet" />
 
     <link rel="stylesheet" href="../css/weui.css" />
     <link rel="stylesheet" href="../css/example.css" />
     <link href="../Libraries/sweetalert/css/sweetalert2.css" rel="stylesheet" />
 
-    <script src="../js/jquery.min.js" type="text/javascript"></script>
-    <script src="../js/jquery-ui.min.js" type="text/javascript"></script>
-    <script src="../js/bootstrap.min.js" type="text/javascript"></script>
-    <script src="../Scripts/jquery-3.2.1.js"></script>
-    <!--  Forms Validations Plugin -->
-    <script src="../js/jquery.validate.min.js"></script>
-    <!--  Select Picker Plugin -->
-    <script src="../js/bootstrap-selectpicker.js"></script>
-    <!--  Checkbox, Radio, Switch and Tags Input Plugins -->
-    <script src="../js/bootstrap-checkbox-radio-switch-tags.js"></script>
-    <!--  Charts Plugin -->
-    <script src="../js/chartist.min.js"></script>
-    <!--  Notifications Plugin    -->
-    <script src="../js/bootstrap-notify.js"></script>
-    <!-- Wizard Plugin    -->
-    <script src="../js/jquery.bootstrap.wizard.min.js"></script>
-    <!--  Bootstrap Table Plugin    -->
-    <script src="../js/bootstrap-table.js"></script>
     <script src="../Libraries/sweetalert/js/sweetalert2.js"></script>
+
 
 </head>
 
@@ -53,7 +36,7 @@
         <div class="container">
             <div class="navbar-header">
                 <a class="navbar-brand">华罗庚学院荣誉学分管理系统</a>
-            </div>      
+            </div>
         </div>
     </nav>
 
@@ -70,7 +53,7 @@
 
                                 <div class="card">
                                     <div class="header text-center">学号绑定</div>
-                                    
+
                                     <div class="content">
                                         <div class="form-group">
                                             <label>账号</label>
@@ -91,7 +74,7 @@
                         </div>
                     </div>
                 </div>
-            </div>          
+            </div>
             <!--更换背景地址-->
             <!--div class="full-page-background" style="background-image: url(&quot;image/full-screen-image-1.jpg&quot;); display: block;"></div-->
         </div>
@@ -106,7 +89,19 @@
 <script src="../js/jquery-ui.min.js" type="text/javascript"></script>
 <script src="../js/bootstrap.min.js" type="text/javascript"></script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/6.6.9/sweetalert2.min.js" type="text/javascript"></script>
 
-    
+<!--  Forms Validations Plugin -->
+<script src="../js/jquery.validate.min.js"></script>
+<!--  Select Picker Plugin -->
+<script src="../js/bootstrap-selectpicker.js"></script>
+<!--  Checkbox, Radio, Switch and Tags Input Plugins -->
+<script src="../js/bootstrap-checkbox-radio-switch-tags.js"></script>
+<!--  Charts Plugin -->
+<script src="../js/chartist.min.js"></script>
+<!--  Notifications Plugin    -->
+<script src="../js/bootstrap-notify.js"></script>
+<!-- Wizard Plugin    -->
+<script src="../js/jquery.bootstrap.wizard.min.js"></script>
+<!--  Bootstrap Table Plugin    -->
+<script src="../js/bootstrap-table.js"></script>
 </html>

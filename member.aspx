@@ -59,18 +59,22 @@
                         </div>
                     </fieldset>
                 </form>
-                <div class="content table-responsive table-full-width">
-                    <asp:Table ID="Table1" runat="server" CssClass="table table-hover table-striped">
-                        <asp:TableHeaderRow>
-                            <asp:TableHeaderCell Width="15%">学号</asp:TableHeaderCell>
-                            <asp:TableHeaderCell Width="20%">姓名</asp:TableHeaderCell>
-                            <asp:TableHeaderCell Width="20%">已获学分</asp:TableHeaderCell>
-                        </asp:TableHeaderRow>
-                    </asp:Table>
-                </div>
-            </div>
 
+
+                    <div class="content table-responsive">
+                        <asp:Table ID="Table1" runat="server" CssClass="table table-hover table-striped">
+                            <asp:TableHeaderRow>
+                                <asp:TableHeaderCell Width="15%">学号</asp:TableHeaderCell>
+                                <asp:TableHeaderCell Width="20%">姓名</asp:TableHeaderCell>
+                                <asp:TableHeaderCell Width="20%">已获学分</asp:TableHeaderCell>
+                            </asp:TableHeaderRow>
+                        </asp:Table>
+                    </div>
+
+            </div>
         </div>
+
     </div>
+
 </asp:Content>
 
